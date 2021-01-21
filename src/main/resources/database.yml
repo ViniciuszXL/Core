@@ -1,0 +1,11 @@
+database-connection:
+    address: 'localhost'
+    port: 3306
+    username: 'root'
+    password: ''
+    schema: 'dust'
+    
+mongodb-connection:
+	address: 'localhost'
+	schema: 'dust'
+	port: 27017
