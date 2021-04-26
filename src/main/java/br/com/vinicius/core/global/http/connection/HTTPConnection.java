@@ -4,13 +4,35 @@ import br.com.vinicius.core.global.http.type.HTTPType;
 import br.com.vinicius.core.global.query.Query.Search;
 
 public class HTTPConnection {
+	
+	public static HTTPConnection create() {
+		return new HTTPConnection();
+	}
 
-	private final String url;
-	private final HTTPType type;
+	private String url;
+	private HTTPType type;
+	
+	public HTTPConnection() {
+		this(null, null);
+	}
 	
 	public HTTPConnection(String url, HTTPType type) {
 		this.url = url;
 		this.type = type;
+	}
+	
+	public HTTPConnection URL(String url) {
+		this.url = url;
+		return this;
+	}
+	
+	public HTTPConnection Type(HTTPType type) {
+		this.type = type;
+		return this;
+	}
+	
+	public HTTPConnection build() {
+		return new HTTPConnection(url, type);
 	}
 	
 	public Search<String> startConnection() {

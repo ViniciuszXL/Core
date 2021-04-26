@@ -32,6 +32,41 @@ import br.com.vinicius.core.global.query.Query.Result;
 import br.com.vinicius.core.global.query.Query.Search;
 
 public class ClassTeste {
+	
+	public static void main(String[] args) {
+		HTTP http = new HTTP();
+		int requestId = 0;
+		long mediaMS = 0, max = 0, min = -1;
+		
+		while (true) {
+			long millis = System.currentTimeMillis();
+			String msg = "";
+			
+			try {
+				Search<String> get = http.update(1, "players", "coins:10;name:ViniciuszXL");
+				if (get.result() == Result.ERROR) {
+					msg = get.first();
+					return;
+				}
+				
+				msg = get.first();
+			} finally {
+				long formatted = System.currentTimeMillis() - millis;
+				if (min == -1)
+					min = formatted;
+
+				if (formatted < min)
+					min = formatted;
+
+				if (formatted > max)
+					max = formatted;
+
+				mediaMS += formatted;
+				System.out.println((requestId++) + " (" + formatted + "ms, MIN: " + min + "ms, MAX: " + max
+						+ "ms, AVG: " + (mediaMS / requestId) + "ms): " + msg);
+			}
+		}
+	}
 
 	public static void main12(String[] args) {
 		HTTP http = new HTTP();
@@ -50,7 +85,7 @@ public class ClassTeste {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main1212(String[] args) {
 		HTTP http = new HTTP();
 		boolean error = false;
 		int requestId = 0;

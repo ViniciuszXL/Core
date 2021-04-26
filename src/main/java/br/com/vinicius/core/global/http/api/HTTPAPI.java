@@ -2,6 +2,8 @@ package br.com.vinicius.core.global.http.api;
 
 public enum HTTPAPI {
 
+	UPDATE("update"),
+	
 	INFO("infos"),
 	PERMISSIONS("permissions"),
 	PLAYERS("players"),
